@@ -37,8 +37,9 @@ describe('API Endpoints', () => {
       };
 
       const directoryPath = path.resolve(__dirname, '../files/');
+      const fsPromises = fs.promises
       jest
-        .spyOn(fs, 'readdir')
+        .spyOn(fsPromises, 'readdir')
         .mockImplementation((directoryPath, callback) => {
           callback(new Error('Mocked Internal Server Error'), null);
         });
@@ -47,7 +48,7 @@ describe('API Endpoints', () => {
 
       expect(response.statusCode).toBe(500);
 
-      fs.readdir.mockRestore();
+      fsPromises.readdir.mockRestore();
     });
   });
 

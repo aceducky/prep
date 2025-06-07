@@ -1,5 +1,9 @@
 {
 	"dependencies": {
 		"express": "^5.1.0"
+	},
+	"type": "module",
+	"scripts": {
+		"dev":"node --watch server.js"
 	}
 }

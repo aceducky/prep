@@ -1,12 +1,13 @@
-// import { open } from "fs/promises";
+import { open } from "fs/promises";
 
-// const file_handler = await open("./f1.txt", "a+");
+const file_handler = await open("./f1.txt", "a+");
 
-// const file_content = await file_handler.readFile("utf-8");
+const file_content = await file_handler.readFile("utf-8");
 
-// const spaces_removed_file_content = "\n" + file_content.split(/\s+/).join(" ");
-
-// await file_handler.writeFile(spaces_removed_file_content, "utf-8");
+const spaces_removed_file_content = "\n" + file_content.split(/\s+/).join(" ");
+console.log(spaces_removed_file_content);
+await file_handler.writeFile(spaces_removed_file_content, "utf-8");
+await file_handler.close();
 
 function timer() {
   const leftPadZero = (n) => String(n).padStart(2, "0");

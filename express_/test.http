@@ -1,0 +1,16 @@
+@api=http://localhost:3000
+###
+
+POST {{api}}/text-body HTTP/1.1
+Content-Type: text/plain
+
+"Hello world"
+
+###
+
+POST {{api}}/json-body HTTP/1.1
+Content-Type: application/json
+
+{
+    "a":"b"
+}

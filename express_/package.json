@@ -1,9 +1,14 @@
 {
 	"dependencies": {
-		"express": "^5.1.0"
+		"cors": "^2.8.5",
+		"express": "^5.1.0",
+		"zod": "^3.25.62"
 	},
 	"type": "module",
 	"scripts": {
-		"dev":"node --watch server.js"
+		"dev": "node --watch server.js"
+	},
+	"devDependencies": {
+		"dotenv": "^16.5.0"
 	}
 }

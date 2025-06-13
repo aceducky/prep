@@ -1,0 +1,6 @@
+@api=http://localhost:5000
+
+### 
+POST {{api}}/signin     HTTP/1.1
+Accept: application/json
+

@@ -1,9 +1,12 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 import cors from "cors";
-
 const app = express();
+app.use(cors());
+dotenv.config();
 
+app.use(express.json());
 const port = 5000;
 const ALL_USERS = [
   {
@@ -43,7 +46,7 @@ app.post("/signin", function (req, res) {
     });
   }
 
-  const token = jwt.sign({ username: username }, "shhhhh");
+  const token = jwt.sign({ username: username }, process.env.JWT_PASSWORD);
   return res.json({
     token,
   });
@@ -51,9 +54,11 @@ app.post("/signin", function (req, res) {
 
 app.get("/users", function (req, res) {
   const token = req.headers.authorization;
+  console.log(token);
   try {
-    const decoded = jwt.verify(token, jwtPassword);
+    const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
     const username = decoded.username;
+    res.json(ALL_USERS.filter((user) => user.username !== username));
     // return a list of users other than this username
   } catch (err) {
     return res.status(403).json({
@@ -61,7 +66,6 @@ app.get("/users", function (req, res) {
     });
   }
 });
-
 
 app.listen(port, () => {
   console.log("Running on http://localhost:5000");

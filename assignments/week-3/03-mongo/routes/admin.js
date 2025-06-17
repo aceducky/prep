@@ -4,6 +4,7 @@ const router = Router();
 
 // Admin Routes
 router.post('/signup', (req, res) => {
+    
     // Implement admin signup logic
 });
 

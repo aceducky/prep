@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const adminRouter = require("./routes/admin");
-const userRouter = require("./routes/user");
+import adminRouter from "./routes/admin.js";
+import userRouter from "./routes/user.js";
 
 // Middleware for parsing request bodies
 app.use(express.json());

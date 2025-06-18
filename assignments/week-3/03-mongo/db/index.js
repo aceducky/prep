@@ -1,32 +1,42 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: "./db/.env",
+});
+
+import { connect, Schema, model } from "mongoose";
 
 if (!process.env.MONGODB_CONNECTION_STRING) {
   throw new Error("Mongodb connection string is not set");
 }
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
+
+try {
+  await connect(process.env.MONGODB_CONNECTION_STRING);
+} catch (err) {
+  console.error("Error while connecting to the database", err);
+}
 
 // Define schemas
-const AdminSchema = new mongoose.Schema({
+const AdminSchema = new Schema({
   // Schema definition here
   username: String,
   password: String,
 });
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   // Schema definition here
   username: String,
   password: String,
   purchasedCourses: [
     {
-      type: mongoose.Schema.ObjectId,
+      type: Schema.ObjectId,
       ref: "Course",
     },
   ],
 });
 
-const CourseSchema = new mongoose.Schema({
+const CourseSchema = new Schema({
   // Schema definition here
   title: String,
   description: String,
@@ -34,12 +44,8 @@ const CourseSchema = new mongoose.Schema({
   price: Number,
 });
 
-const Admin = mongoose.model("Admin", AdminSchema);
-const User = mongoose.model("User", UserSchema);
-const Course = mongoose.model("Course", CourseSchema);
+const Admin = model("Admin", AdminSchema);
+const User = model("User", UserSchema);
+const Course = model("Course", CourseSchema);
 
-module.exports = {
-  Admin,
-  User,
-  Course,
-};
+export { Admin, User, Course };

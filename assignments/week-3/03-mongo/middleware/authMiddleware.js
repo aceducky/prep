@@ -3,13 +3,13 @@ function createAuthMiddleware({ model, invalidCredentialsMessage }) {
         const username = req.headers.username;
         const password = req.headers.password;
         if (!username || !password) {
-            return res.status(401).json({
+            return res.status(400).json({
                 error: "Invalid username or password format",
             });
         }
         const user = await model.findOne({ username, password });
         if (!user) {
-            return res.status(401).json({
+            return res.status(400).json({
                 error: invalidCredentialsMessage,
             });
         }
@@ -17,4 +17,4 @@ function createAuthMiddleware({ model, invalidCredentialsMessage }) {
     }
 }
 
-module.exports = createAuthMiddleware;
+export default createAuthMiddleware;

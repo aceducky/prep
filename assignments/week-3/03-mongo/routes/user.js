@@ -1,6 +1,6 @@
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
-const userMiddleware = require("../middleware/user");
+import userMiddleware from "../middleware/user.js";
 
 // User Routes
 router.post('/signup', (req, res) => {
@@ -19,4 +19,4 @@ router.get('/purchasedCourses', userMiddleware, (req, res) => {
     // Implement fetching purchased courses logic
 });
 
-module.exports = router
+export default router

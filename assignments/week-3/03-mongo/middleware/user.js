@@ -1,9 +1,9 @@
-const { User } = require("../db");
-const createAuthMiddleware = require("./authMiddleware");
+import { User } from "../db/index.js";
+import createAuthMiddleware from "./authMiddleware.js";
 
 const userMiddleware = createAuthMiddleware({
     model: User,
     invalidCredentialsMessage: "User does not exist or invalid credentials"
 });
 
-module.exports = userMiddleware;
+export default userMiddleware;

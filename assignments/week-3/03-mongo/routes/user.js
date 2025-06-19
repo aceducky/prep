@@ -67,8 +67,17 @@ router.post("/courses/:courseId", userMiddleware, async (req, res) => {
     });
 });
 
-router.get("/purchasedCourses", userMiddleware, (req, res) => {
+router.get("/purchasedCourses", userMiddleware, async (req, res) => {
   // Implement fetching purchased courses logic
+  const username = req.headers.username;
+  User.findOne({ username }, { purchasedCourses: 1 })
+    .then((purchasedCourses) => {
+      res.status(200).json({ courses: purchasedCourses });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Error listing purchased courses" });
+    });
 });
 
 export default router;

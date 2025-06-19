@@ -24,7 +24,7 @@ router.post(
         res.status(201).json({ message: "Admin created successfully" });
       })
       .catch((err) => {
-        console.log(err.message);
+        console.error(err.message);
         res.status(500).json({ message: "Error creating admin" });
       });
   }
@@ -32,6 +32,7 @@ router.post(
 
 router.post(
   "/courses",
+  adminMiddleware,
   reqBodyValidator(
     z
       .object({
@@ -42,26 +43,32 @@ router.post(
       })
       .strip()
   ),
-  adminMiddleware,
   (req, res) => {
     // Implement course creation logic
     Course.create(req.body)
       .then((newCourse) => {
-        res
-          .status(201)
-          .json({
-            message: "Course created successfully",
-            courseId: newCourse._id,
-          });
+        res.status(201).json({
+          message: "Course created successfully",
+          courseId: newCourse._id,
+        });
       })
       .catch((err) => {
+        console.error(err.message);
         res.status(500).json({ message: "Error creating course" });
       });
   }
 );
 
-router.get("/courses", adminMiddleware, (req, res) => {
+router.get("/courses", adminMiddleware, async (req, res) => {
   // Implement fetching all courses logic
+  Course.find()
+    .then((courses) => {
+      res.status(200).json({ courses });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.sendStatus(500).json({ message: "Error getting course list" });
+    });
 });
 
 export default router;

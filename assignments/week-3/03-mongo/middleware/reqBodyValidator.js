@@ -1,4 +1,3 @@
-import { z } from "zod/v4";
 export default function reqBodyValidator(schema) {
   return (req, res, next) => {
     const isValid = schema.safeParse(req.body);

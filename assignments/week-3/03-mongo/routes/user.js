@@ -1,9 +1,11 @@
 import { Router } from "express";
-import userMiddleware from "../middleware/user.js";
+import userMiddleware from "../middleware/userAuthMiddleware.js";
 import reqBodyValidator from "../middleware/reqBodyValidator.js";
 import { Course, User } from "../db/index.js";
 import { z } from "zod/v4";
 import { Types } from "mongoose";
+import jwt from "jsonwebtoken";
+
 const router = Router();
 
 // User Routes
@@ -21,7 +23,16 @@ router.post(
     // Implement user signup logic
     User.create(req.body)
       .then(() => {
-        res.status(200).json({ message: "User created successfully" });
+        const jwtToken = jwt.sign(
+          {
+            username: req.body.username,
+          },
+          process.env.JWT_SECRET
+        );
+        res.status(200).json({
+          message: "User created successfully",
+          token: jwtToken,
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -72,7 +83,7 @@ router.get("/purchasedCourses", userMiddleware, async (req, res) => {
   const username = req.headers.username;
   User.findOne({ username }, { purchasedCourses: 1 })
     .then((purchasedCourses) => {
-      res.status(200).json({ courses: purchasedCourses });
+      res.status(200).json({ courses: purchasedCourses ?? [] });
     })
     .catch((err) => {
       console.error(err);

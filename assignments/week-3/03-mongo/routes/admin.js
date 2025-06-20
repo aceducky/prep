@@ -1,8 +1,9 @@
 import { Router } from "express";
-import adminMiddleware from "../middleware/admin.js";
+import adminAuthMiddleware from "../middleware/adminAuthMiddleware.js";
 import { Admin, Course } from "../db/index.js";
 import { z } from "zod/v4";
 import reqBodyValidator from "../middleware/reqBodyValidator.js";
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -19,12 +20,26 @@ router.post(
   ),
   (req, res) => {
     // Implement admin signup logic
-    Admin.create({ username, password })
+    Admin.create(req.body)
       .then(() => {
-        res.status(201).json({ message: "Admin created successfully" });
+        const jwtToken = jwt.sign(
+          {
+            username: req.body.username,
+          },
+          process.env.JWT_SECRET
+        );
+        res.status(200).json({
+          message: "Admin created successfully",
+          token: jwtToken,
+        });
       })
       .catch((err) => {
-        console.error(err.message);
+        if (err.code === 11000) {
+          return res.status(400).json({
+            error: "User already exists",
+          });
+        }
+        console.error(err);
         res.status(500).json({ message: "Error creating admin" });
       });
   }
@@ -32,7 +47,7 @@ router.post(
 
 router.post(
   "/courses",
-  adminMiddleware,
+  adminAuthMiddleware,
   reqBodyValidator(
     z
       .object({
@@ -47,7 +62,7 @@ router.post(
     // Implement course creation logic
     Course.create(req.body)
       .then((newCourse) => {
-        res.status(201).json({
+        res.status(200).json({
           message: "Course created successfully",
           courseId: newCourse._id,
         });
@@ -59,7 +74,7 @@ router.post(
   }
 );
 
-router.get("/courses", adminMiddleware, async (req, res) => {
+router.get("/courses", adminAuthMiddleware, async (req, res) => {
   // Implement fetching all courses logic
   Course.find()
     .then((courses) => {

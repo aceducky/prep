@@ -1,0 +1,42 @@
+type: http_request
+model: http_request
+id: rq_5g4gFeHZXM
+createdAt: 2025-06-19T16:13:05.753578200
+updatedAt: 2025-06-20T07:02:58.018581
+workspaceId: wk_z6hhh6ZvfN
+folderId: null
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers:
+- enabled: false
+  name: username
+  value: user1
+  id: 07HDdXAAIC
+- enabled: false
+  name: password
+  value: user1
+  id: 5IhFsgjmQC
+- enabled: true
+  name: Authorization
+  value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzUwMzk5OTk1fQ.hEF5JNLtEtF8Gj07t4Veu4l_3yJLHnlwAsAVmgeHtDs
+  id: vqfPAUduQy
+- enabled: true
+  name: ''
+  value: ''
+  id: zSqg5gWBuG
+method: GET
+name: ''
+sortPriority: 5000.0
+url: ${[ api ]}/user/purchasedCourses
+urlParameters:
+- enabled: true
+  name: ''
+  value: ''
+  id: P3YmQCByRg
+- enabled: true
+  name: ''
+  value: ''
+  id: gN7MhnV4k8

@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_CV9zhP2XYs
+createdAt: 2025-06-19T08:12:48.988761300
+updatedAt: 2025-06-20T07:02:58.028141900
+workspaceId: wk_z6hhh6ZvfN
+folderId: null
+authentication:
+  disabled: true
+authenticationType: bearer
+body: {}
+bodyType: null
+description: ''
+headers:
+- enabled: false
+  name: Authorization
+  value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzUwMzk5OTk1fQ.hEF5JNLtEtF8Gj07t4Veu4l_3yJLHnlwAsAVmgeHtDs
+  id: N3nEQ9Ii4e
+- enabled: true
+  name: ''
+  value: ''
+  id: kjtIjmPzw8
+method: GET
+name: api/user/courses
+sortPriority: 6000.0
+url: ${[ api ]}/user/courses/
+urlParameters: []

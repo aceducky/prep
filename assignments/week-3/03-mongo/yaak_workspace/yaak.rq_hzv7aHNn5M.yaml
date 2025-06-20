@@ -1,0 +1,44 @@
+type: http_request
+model: http_request
+id: rq_hzv7aHNn5M
+createdAt: 2025-06-18T15:24:55.609745400
+updatedAt: 2025-06-20T07:02:57.980262400
+workspaceId: wk_z6hhh6ZvfN
+folderId: null
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "title":"course1",
+      "description":"description1",
+      "price": 3
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: W7QwWxAtfc
+- enabled: false
+  name: username
+  value: admin1
+  id: Qdw9a28kWy
+- enabled: false
+  name: password
+  value: admin1
+  id: 35qnzJTX4W
+- enabled: true
+  name: Authorization
+  value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTc1MDM5OTc0OX0.5astr_rImjqotBl__LLz6wkyLEAw_1hR9OcD4fArRhI
+  id: BM6PC2vvsj
+- enabled: true
+  name: ''
+  value: ''
+  id: 42zhV46WS4
+method: POST
+name: ''
+sortPriority: 1000.0
+url: ${[ api ]}/admin/courses
+urlParameters: []

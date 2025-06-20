@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_McmjJqApZJ
+createdAt: 2025-06-19T07:30:42.990055500
+updatedAt: 2025-06-20T07:02:57.999497800
+workspaceId: wk_z6hhh6ZvfN
+folderId: null
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "username": "user1",
+      "password": "user1"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: M4pMj7nBSM
+method: POST
+name: ''
+sortPriority: 3000.0
+url: ${[ api ]}/user/signup
+urlParameters: []

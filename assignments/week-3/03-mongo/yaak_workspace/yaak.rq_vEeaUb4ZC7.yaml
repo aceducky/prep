@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_vEeaUb4ZC7
+createdAt: 2025-06-17T13:32:46.467061300
+updatedAt: 2025-06-20T07:02:57.968642300
+workspaceId: wk_z6hhh6ZvfN
+folderId: null
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+        "username": "admin1",
+        "password": "admin1"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: gDxCcB5yV4
+method: POST
+name: ''
+sortPriority: 0.0
+url: ${[ api ]}/admin/signup
+urlParameters: []

@@ -4,7 +4,7 @@ const Link = ({ text, url }) => {
   return (
     <a
       href={url}
-      className="inline-block w-fit bg-blue-500 text-white p-3 m-2 rounded-2xl"
+      className="inline-block w-fit bg-blue-500 text-white p-3 my-2 mr-2 rounded-sm"
     >
       {text}
     </a>
@@ -13,14 +13,14 @@ const Link = ({ text, url }) => {
 
 function Card({ name, desc, interests, socialHandles }) {
   return (
-    <div className="shadow-md border border-gray-200 p-2 max-w-[400px] m-2 rounded-sm">
-      <h1 className="text-2xl font-bold m-3">{name}</h1>
-      <p className="text-gray-600 m-2">{desc}</p>
+    <div className="shadow-md border border-gray-200 p-4 max-w-[400px] m-2 rounded-sm">
+      <h1 className="text-2xl font-bold my-2">{name}</h1>
+      <p className="text-gray-600">{desc}</p>
       {interests.length > 0 && (
         <div>
-          <h2 className="text-xl font-semibold m-2">Interests</h2>
+          <h2 className="text-xl font-semibold my-1">Interests</h2>
           {interests.map((interest, i) => (
-            <p key={i} className="m-2 text-gray-600">
+            <p key={i} className="text-gray-600">
               {interest}
             </p>
           ))}

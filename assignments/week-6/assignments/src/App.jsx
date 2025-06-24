@@ -14,10 +14,10 @@ function App() {
       {/* <Assignment1 /> */}
       {/* <Assignment2 /> */}
       {/* <Assignment3 /> */}
-      <Assignment4 />
+      {/* <Assignment4 /> */}
       {/* <Assignment5 /> */}
       {/* <Assignment6 /> */}
-      {/* <Assignment7 /> */}
+      <Assignment7 />
     </div>
   );
 }

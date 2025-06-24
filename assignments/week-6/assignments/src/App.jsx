@@ -12,8 +12,8 @@ function App() {
   return (
     <div>
       {/* <Assignment1 /> */}
-      <Assignment2 />
-      {/* <Assignment3 /> */}
+      {/* <Assignment2 /> */}
+      <Assignment3 />
       {/* <Assignment4 /> */}
       {/* <Assignment5 /> */}
       {/* <Assignment6 /> */}

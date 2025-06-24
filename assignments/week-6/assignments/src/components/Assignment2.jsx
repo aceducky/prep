@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useMemo } from "react";
 
 // In this assignment, you will create a component that renders a large list of sentences and includes an input field for filtering these items.
 // The goal is to use useMemo to optimize the filtering process, ensuring the list is only re-calculated when necessary (e.g., when the filter criteria changes).
@@ -20,15 +21,27 @@ export function Assignment2() {
   const [sentences, setSentences] = useState(ALL_WORDS);
   const [filter, setFilter] = useState("");
 
-  const filteredSentences = sentences.filter((x) => x.includes(filter));
-
+  const filteredSentences = useMemo(
+    () => sentences.filter((x) => x.includes(filter)),
+    [filter, sentences]
+  );
+  const [count, setCount] = useState(1);
   return (
-    <div>
+    <div className="grid place-items-center my-5">
+      <p>Seperate calculation: {count}</p>
+      <button
+        className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        onClick={() => setCount(count + 1)}
+      >
+        Increment Counter
+      </button>
+
       <input
         type="text"
         onChange={(e) => {
           setFilter(e.target.value);
         }}
+        className="border p-2 mt-5"
       ></input>
       {filteredSentences.map((word, i) => (
         <div key={i}>{word}</div>
